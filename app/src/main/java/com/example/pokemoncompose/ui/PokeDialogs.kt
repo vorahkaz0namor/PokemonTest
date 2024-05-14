@@ -125,7 +125,7 @@ fun ErrorDialog(
                         .fillMaxWidth()
                         .padding(top = TwentyFourDp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = BtnEnabled,
+                        containerColor = MaterialTheme.colors.colorB066ff,
                     ),
                     shape = RoundedCornerShape(TenDp)
                 ) {

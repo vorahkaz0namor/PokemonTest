@@ -19,31 +19,31 @@ fun PokemonNavHost(
 ) {
     pokemonNavHostController
         .HelperForPokemonViewModel { navigateUp, navigateToDetailScreen ->
-        pokemonViewModel.WithCallbackState(
-            navigateUp = navigateUp,
-            navigateToDetailScreen = navigateToDetailScreen
-        ) { pokeState, callbackState ->
-            NavHost(
-                navController = pokemonNavHostController,
-                startDestination = PokemonScreen.PokemonList.route
-            ) {
-                composable(route = PokemonScreen.PokemonList.route) {
-                    PokemonListScreen(
-                        pokemonList = pokeState.pokemonList,
-                        onSelectedItemClick = callbackState.onSelectedItemClick
-                    )
-                }
-                composable(route = PokemonScreen.PokemonDetail.route) {
-                    pokeState.selectedItem?.let {
-                        PokemonDetailScreen(
-                            pokemon = it,
-                            onBackButtonClick = callbackState.onBackButtonClick
+            pokemonViewModel.WithCallbackState(
+                navigateUp = navigateUp,
+                navigateToDetailScreen = navigateToDetailScreen
+            ) { pokeState, callbackState ->
+                NavHost(
+                    navController = pokemonNavHostController,
+                    startDestination = PokemonScreen.PokemonList.route
+                ) {
+                    composable(route = PokemonScreen.PokemonList.route) {
+                        PokemonListScreen(
+                            pokemonList = pokeState.pokemonList,
+                            onSelectedItemClick = callbackState.onSelectedItemClick
                         )
+                    }
+                    composable(route = PokemonScreen.PokemonDetail.route) {
+                        pokeState.selectedItem?.let {
+                            PokemonDetailScreen(
+                                pokemon = it,
+                                onBackButtonClick = callbackState.onBackButtonClick
+                            )
+                        }
                     }
                 }
             }
         }
-    }
 }
 
 sealed class PokemonScreen(val route: String) {

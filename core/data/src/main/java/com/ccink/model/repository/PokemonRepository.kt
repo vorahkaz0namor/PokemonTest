@@ -19,22 +19,16 @@ internal class PokemonRepositoryImpl @Inject constructor(
 ): PokemonRepository {
     override suspend fun readPokemons(request: ItemRequest): Resource<BaseModel<List<Pokemon>>> =
         handleRootCall {
-            var pokeNames: List<String>
             var pokemons: List<Pokemon> = emptyList()
             handleAPICall {
                 pokemonApiService.readPokemonShortcut(request).also { response ->
-                    response.body()?.results?.let {
-                        pokeNames = it.map(Shortcut::name)
-                        if (pokeNames.isNotEmpty()) {
-                            pokeNames.map {
-                                pokemonApiService.readPokemon(it).also { response ->
-                                    response.body()?.let {
-                                        pokemons = pokemons + it
-                                    }
-                                }
+                    response.body()?.results
+                        ?.map(Shortcut::name)
+                        ?.map { pokeName ->
+                            pokemonApiService.readPokemon(pokeName).body()?.let {
+                                pokemons = pokemons + it
                             }
                         }
-                    }
                 }
             }
             pokemons.ifEmpty { null }

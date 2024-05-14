@@ -43,7 +43,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providePokemonApiServiceImpl(
+    fun providePokemonApiService(
         api: PokemonApi
     ): PokemonApiService = PokemonApiServiceImpl(api)
 

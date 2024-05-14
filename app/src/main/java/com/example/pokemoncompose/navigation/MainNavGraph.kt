@@ -1,12 +1,14 @@
 package com.example.pokemoncompose.navigation
 
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 
-fun NavGraphBuilder.mainNavGraph(navController: NavHostController) {
-            navigation(route = Graph.MAIN, startDestination = MainScreen.Main.route) {
+fun NavGraphBuilder.mainNavGraph() {
+            navigation(
+                route = Graph.MAIN,
+                startDestination = MainScreen.Main.route
+            ) {
                 composable(route = MainScreen.Main.route) {
                     PokemonNavHost()
                 }

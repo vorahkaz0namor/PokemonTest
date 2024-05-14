@@ -26,6 +26,7 @@ data class BusinessColors(
     val secondary: Color = Color(0xFFA8A9BA),
     val color212529: Color = Color(0xFF212529),
     val color75212529: Color = Color(0x75212529),
+    val colorB066ff: Color = Color(0xFFB066FF),
     val transparent: Color = Color.Transparent,
     val white: Color = Color.White,
 )
