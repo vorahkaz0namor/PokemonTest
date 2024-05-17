@@ -2,7 +2,10 @@ package com.example.pokemoncompose.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -146,7 +149,7 @@ fun PokemonViewModel.WithCallbackState(
                 Arrangement.Center
             else
                 Arrangement.Top,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
     ) {
         pokeState.HandlingLoadState {
             composable(pokeState, callbackState)
